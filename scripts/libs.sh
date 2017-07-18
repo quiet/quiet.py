@@ -31,7 +31,7 @@ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$SYSROOT/usr" -DJANSSON
 
 mkdir -p "$BUILDPATH/portaudio"
 cd "$BUILDPATH/portaudio"
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$SYSROOT/usr" -DCMAKE_PREFIX_PATH="$SYSROOT" "$SRCPATH/portaudio" && make && make install && cp libportaudio_static.a "$SYSROOT/usr/lib"
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$SYSROOT/usr" -DCMAKE_PREFIX_PATH="$SYSROOT" "$SRCPATH/portaudio" && make && make install && cp libportaudio.a "$SYSROOT/usr/lib"
 
 mkdir -p "$BUILDPATH/libquiet"
 cd "$BUILDPATH/libquiet"
@@ -42,7 +42,7 @@ mkdir -p "$INCLUDEPATH"
 cp "$SYSROOTPATH/usr/lib/libfec.a" "$LIBPATH"
 cp "$SYSROOTPATH/usr/lib/libliquid.a" "$LIBPATH"
 cp "$SYSROOTPATH/usr/lib/libjansson.a" "$LIBPATH"
-cp "$SYSROOTPATH/usr/lib/libportaudio_static.a" "$LIBPATH/libportaudio.a"
+cp "$SYSROOTPATH/usr/lib/libportaudio.a" "$LIBPATH"
 cp "$SYSROOTPATH/usr/lib/libquiet.a" "$LIBPATH"
 cp "$SYSROOTPATH/usr/include/fec.h" "$INCLUDEPATH"
 cp -R "$SYSROOTPATH/usr/include/liquid" "$INCLUDEPATH"
