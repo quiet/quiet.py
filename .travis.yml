@@ -5,4 +5,3 @@ os:
 
 script:
     - scripts/libs.sh
-    - echo $(ls lib)
