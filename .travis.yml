@@ -4,5 +4,6 @@ os:
     - osx
 
 script:
+    - cd quiet/quiet.py
     - scripts/lib.sh
     - echo $(ls lib)
