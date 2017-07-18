@@ -31,7 +31,7 @@ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$SYSROOT/usr" -DJANSSON
 
 mkdir -p "$BUILDPATH/portaudio"
 cd "$BUILDPATH/portaudio"
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$SYSROOT/usr" -DCMAKE_PREFIX_PATH="$SYSROOT" "$SRCPATH/portaudio" && make && make install && cp libportaudio.a "$SYSROOT/usr/lib"
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$SYSROOT/usr" -DCMAKE_PREFIX_PATH="$SYSROOT" "$SRCPATH/portaudio" && make && make install && cp libportaudio_static.a "$SYSROOT/usr/lib/libportaudio.a"
 
 mkdir -p "$BUILDPATH/libquiet"
 cd "$BUILDPATH/libquiet"
