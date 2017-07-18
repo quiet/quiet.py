@@ -1,0 +1,15 @@
+[submodule "libcorrect"]
+	path = libcorrect
+	url = https://github.com/quiet/libcorrect
+[submodule "libquiet"]
+	path = libquiet
+	url = https://github.com/quiet/quiet
+[submodule "jansson"]
+	path = jansson
+	url = https://github.com/akheron/jansson
+[submodule "portaudio"]
+	path = portaudio
+	url = https://git.assembla.com/portaudio.git
+[submodule "liquid-dsp"]
+	path = liquid-dsp
+	url = https://github.com/quiet/liquid-dsp
