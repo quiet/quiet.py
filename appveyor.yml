@@ -1,0 +1,27 @@
+build: false
+version: 1.0.{build}
+
+branches:
+    only:
+        - master
+
+install:
+    - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
+
+    - cd libcorrect
+    - mkdir build
+    - cd build
+    - cmake -G "Visual Studio 14 2015 Win64" ..
+    - cmake --build . --config Release --target shim
+
+    - cd ../../jansson
+    - mkdir build
+    - cd build
+    - cmake -DCMAKE_BUILD_TYPE=Release -DJANSSON_BUILD_SHARED_LIBS=off -DJANSSON_WITHOUT_TESTS=on -DJANSSON_EXAMPLES=off -DJANSSON_BUILD_DOCS=off -G "Visual Studio 14 2015 Win64" ..
+    - cmake --build . --config Release
+
+    - cd ../../portaudio
+    - mkdir build
+    - cd build
+    - cmake -G "Visual Studio 14 2015 Win64" ..
+    - cmake --build . --config Release
