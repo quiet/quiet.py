@@ -10,17 +10,17 @@ install:
 
     - git submodule update --init --recursive
 
-    - set ABSPATH="%cd%\.."
-    - set SCRIPTPATH="%cd%"
-    - set SRCPATH="%ABSPATH%"
-    - set SYSROOTPATH="%ABSPATH%\sysroot"
-    - set LIBPATH="%ABSPATH%\lib\"
-    - set INCLUDEPATH="%ABSPATH%\include\"
+    - set "ABSPATH=%cd%\.."
+    - set "SCRIPTPATH=%cd%"
+    - set "SRCPATH=%ABSPATH%"
+    - set "SYSROOTPATH=%ABSPATH%\sysroot"
+    - set "LIBPATH=%ABSPATH%\lib\\"
+    - set "INCLUDEPATH=%ABSPATH%\include\\"
 
     - mkdir "%SYSROOTPATH%\usr"
 
-    - set SYSROOT="%SYSROOTPATH%"
-    - set BUILDPATH="%SCRIPTPATH%\build"
+    - set "SYSROOT=%SYSROOTPATH%"
+    - set "BUILDPATH=%SCRIPTPATH%\build"
     - mkdir "%BUILDPATH%"
 
     - mkdir "%BUILDPATH%\libcorrect"
