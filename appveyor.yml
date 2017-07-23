@@ -14,7 +14,7 @@ install:
       #- set "ABSPATH=%cd%\.."
     - set "SCRIPTPATH=%cd%"
       #- set "SRCPATH=%ABSPATH%"
-    - set "SYSROOTPATH=build\sysroot"
+    - set "SYSROOTPATH=%cd%/build\sysroot"
       #- set "LIBPATH=%ABSPATH%/lib/"
       #- set "INCLUDEPATH=%ABSPATH%/include/"
 
