@@ -8,6 +8,8 @@ branches:
 install:
     - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
 
+    - git submodule update --init --recursive
+
     - cd libcorrect
     - dir
     - mkdir build
