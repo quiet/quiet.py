@@ -12,7 +12,7 @@ install:
 
     - set ABSPATH="%cd%\.."
     - set SCRIPTPATH="%cd%"
-    - set SCRPATH="%ABSPATH%"
+    - set SRCPATH="%ABSPATH%"
     - set SYSROOTPATH="%ABSPATH%\sysroot"
     - set LIBPATH="%ABSPATH%\lib\"
     - set INCLUDEPATH="%ABSPATH%\include\"
