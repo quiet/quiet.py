@@ -15,8 +15,6 @@ install:
     - set "SCRIPTPATH=%cd%"
     - set "SRCPATH=%ABSPATH%"
     - set "SYSROOTPATH=%SCRIPTPATH%/build\sysroot"
-      #- set "LIBPATH=%ABSPATH%/lib/"
-      #- set "INCLUDEPATH=%ABSPATH%/include/"
 
     - mkdir "%SYSROOTPATH%/usr"
 
@@ -30,18 +28,22 @@ install:
 
     - mkdir "%BUILDPATH%/liquid-dsp"
     - cd "%BUILDPATH%/liquid-dsp"
-    - cmake -DCMAKE_BUILD_TYPE=Release "%SRCPATH%/liquid-dsp" -DCMAKE_INSTALL_PREFIX="%SYSROOTPATH%/usr"  -DCMAKE_PREFIX_PATH="%SYSROOTPATH%" -DCMAKE_SHARED_LINKER_FLAGS="/LIBPATH %SYSROOTPATH%/usr/lib" -DLIQUID_BUILD_EXAMPLES="off" -DLIQUID_BUILD_SANDBOX="off" -G "Visual Studio 14 2015 Win64"
+    - cmake -DCMAKE_BUILD_TYPE=Release "%SRCPATH%/liquid-dsp" -DCMAKE_INSTALL_PREFIX="%SYSROOTPATH%/usr" -DCMAKE_PREFIX_PATH="%SYSROOTPATH%" -DCMAKE_SHARED_LINKER_FLAGS="/LIBPATH %SYSROOTPATH%/usr/lib" -DLIQUID_BUILD_EXAMPLES="off" -DLIQUID_BUILD_SANDBOX="off" -G "Visual Studio 14 2015 Win64"
     - cmake --build . --config Release --target liquid-static
-    - cmake --install .
+    - cmake --build . --config Release --target install
 
-    - cd ../../jansson
-    - mkdir build
-    - cd build
-    - cmake -DCMAKE_BUILD_TYPE=Release -DJANSSON_BUILD_SHARED_LIBS=off -DJANSSON_WITHOUT_TESTS=on -DJANSSON_EXAMPLES=off -DJANSSON_BUILD_DOCS=off -G "Visual Studio 14 2015 Win64" ..
+    - mkdir "%BUILDPATH%/jansson"
+    - cd "%BUILDPATH%/jansson"
+    - cmake -DCMAKE_BUILD_TYPE=Release "%SRCPATH%/jansson" -DCMAKE_INSTALL_PREFIX="%SYSROOTPATH%/usr"-DJANSSON_BUILD_SHARED_LIBS=off -DJANSSON_WITHOUT_TESTS=on -DJANSSON_EXAMPLES=off -DJANSSON_BUILD_DOCS=off -G "Visual Studio 14 2015 Win64"
     - cmake --build . --config Release
+    - cmake --build . --config Release --target install
 
     - cd ../../portaudio
     - mkdir cmake_build
     - cd cmake_build
     - cmake -G "Visual Studio 14 2015 Win64" ..
     - cmake --build . --config Release
+
+    - set "LIBDESTPATH=%ABSPATH%/lib/"
+    - set "INCLUDEDESTPATH=%ABSPATH%/include/"
+
