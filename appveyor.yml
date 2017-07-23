@@ -25,7 +25,7 @@ install:
 
     - mkdir "%BUILDPATH%/libcorrect"
     - cd "%BUILDPATH%/libcorrect"
-    - cmake -DCMAKE_BUILD_TYPE=Release "%SRCPATH%/libcorrect" -DCMAKE_INSTALL_PREFIX="%SYSROOT%/usr" -G "Visual Studio 14 2015 Win64"
+    - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%SYSROOT%/usr" -G "Visual Studio 14 2015 Win64" "%SRCPATH%/libcorrect"
     - cmake --build . --config Release --target shim
     - cmake --install .
 
