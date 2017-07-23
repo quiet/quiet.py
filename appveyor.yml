@@ -13,19 +13,19 @@ install:
     - set ABSPATH="%cd%\.."
     - set SCRIPTPATH="%cd%"
     - set SCRPATH="%ABSPATH%"
-    - set SYSROOTPATH="%ABSPATH%/sysroot"
-    - set LIBPATH="%ABSPATH%/lib/"
-    - set INCLUDEPATH="%ABSPATH%/include/"
+    - set SYSROOTPATH="%ABSPATH%\sysroot"
+    - set LIBPATH="%ABSPATH%\lib\"
+    - set INCLUDEPATH="%ABSPATH%\include\"
 
-    - mkdir "%SYSROOTPATH%/usr"
+    - mkdir "%SYSROOTPATH%\usr"
 
     - set SYSROOT="%SYSROOTPATH%"
-    - set BUILDPATH="%SCRIPTPATH%/build"
+    - set BUILDPATH="%SCRIPTPATH%\build"
     - mkdir "%BUILDPATH%"
 
-    - mkdir "%BUILDPATH%/libcorrect"
-    - cd "%BUILDPATH%/libcorrect"
-    - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%SYSROOT%/usr" -G "Visual Studio 14 2015 Win64" "%SRCPATH%/libcorrect"
+    - mkdir "%BUILDPATH%\libcorrect"
+    - cd "%BUILDPATH%\libcorrect"
+    - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%SYSROOT%\usr" -G "Visual Studio 14 2015 Win64" "%SRCPATH%\libcorrect"
     - cmake --build . --config Release --target shim
     - cmake --install .
 
