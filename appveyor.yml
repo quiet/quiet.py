@@ -10,6 +10,7 @@ install:
 
     - git submodule update --init --recursive
 
+    - cd scripts
     - set "ABSPATH=%cd%\.."
     - set "SCRIPTPATH=%cd%"
     - set "SRCPATH=%ABSPATH%"
