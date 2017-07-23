@@ -20,7 +20,7 @@ install:
 
     - mkdir "build/sysroot/usr"
 
-    - set "BUILDPATH=%SCRIPTPATH%/build"
+    - set "BUILDPATH=%SCRIPTPATH%\build"
     - mkdir "%BUILDPATH%"
 
     - mkdir "%BUILDPATH%\libcorrect"
