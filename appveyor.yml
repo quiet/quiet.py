@@ -1,13 +1,29 @@
 build: false
-version: 1.0.{build}
+version: {build}
 
 branches:
     only:
         - master
 
-install:
-    - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
+environment:
+    matrix:
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          COMPILER: "C:/projects/tools/LLVM-install/bin/clang-cl.exe"
+          MSVC_BAT: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
+          MSVC_BAT_ARCH: x86
+          GENERATOR: "Ninja"
+          APPVEYOR_SAVE_CACHE_ON_ERROR: true
+          DLL_PATH: lib\fec.dll
 
+
+install:
+    - call "%APPVEYOR_BUILD_FOLDER%\\.appveyor-install-tools.cmd"
+
+before_build:
+    - if DEFINED MSVC_BAT call "%MSVC_BAT%" %MSVC_BAT_ARCH%
+    - cd %APPVEYOR_BUILD_FOLDER%
+
+build_script:
     - git submodule update --init --recursive
 
     - cd scripts
@@ -22,19 +38,19 @@ install:
 
     - mkdir "%BUILDPATH%\libcorrect"
     - cd "%BUILDPATH%\libcorrect"
-    - cmake -DCMAKE_BUILD_TYPE=Release "%SRCPATH%/libcorrect" -DCMAKE_INSTALL_PREFIX="%SYSROOTPATH%/usr" -G "Visual Studio 14 2015 Win64"
+    - cmake -G "%GENERATOR%" -DCMAKE_C_COMPILER=%COMPILER% -DCMAKE_CXX_COMPILER=%COMPILER% -DCMAKE_BUILD_TYPE=Release "%SRCPATH%/libcorrect" -DCMAKE_INSTALL_PREFIX="%SYSROOTPATH%/usr"
     - cmake --build . --config Release --target shim
     - cmake --build . --config Release --target install
 
     - mkdir "%BUILDPATH%/liquid-dsp"
     - cd "%BUILDPATH%/liquid-dsp"
-    - cmake -DCMAKE_BUILD_TYPE=Release "%SRCPATH%/liquid-dsp" -DCMAKE_INSTALL_PREFIX="%SYSROOTPATH%/usr" -DCMAKE_PREFIX_PATH="%SYSROOTPATH%" -DCMAKE_SHARED_LINKER_FLAGS="/LIBPATH %SYSROOTPATH%/usr/lib" -DLIQUID_BUILD_EXAMPLES="off" -DLIQUID_BUILD_SANDBOX="off" -G "Visual Studio 14 2015 Win64"
+    - cmake -G "%GENERATOR%" -DCMAKE_C_COMPILER=%COMPILER% -DCMAKE_CXX_COMPILER=%COMPILER% -DCMAKE_BUILD_TYPE=Release "%SRCPATH%/liquid-dsp" -DCMAKE_INSTALL_PREFIX="%SYSROOTPATH%/usr" -DCMAKE_PREFIX_PATH="%SYSROOTPATH%" -DCMAKE_SHARED_LINKER_FLAGS="/LIBPATH %SYSROOTPATH%/usr/lib" -DLIQUID_BUILD_EXAMPLES="off" -DLIQUID_BUILD_SANDBOX="off"
     - cmake --build . --config Release --target liquid-static
     - cmake --build . --config Release --target install
 
     - mkdir "%BUILDPATH%/jansson"
     - cd "%BUILDPATH%/jansson"
-    - cmake -DCMAKE_BUILD_TYPE=Release "%SRCPATH%/jansson" -DCMAKE_INSTALL_PREFIX="%SYSROOTPATH%/usr"-DJANSSON_BUILD_SHARED_LIBS=off -DJANSSON_WITHOUT_TESTS=on -DJANSSON_EXAMPLES=off -DJANSSON_BUILD_DOCS=off -G "Visual Studio 14 2015 Win64"
+    - cmake -G "%GENERATOR%" -DCMAKE_C_COMPILER=%COMPILER% -DCMAKE_CXX_COMPILER=%COMPILER% -DCMAKE_BUILD_TYPE=Release "%SRCPATH%/jansson" -DCMAKE_INSTALL_PREFIX="%SYSROOTPATH%/usr"-DJANSSON_BUILD_SHARED_LIBS=off -DJANSSON_WITHOUT_TESTS=on -DJANSSON_EXAMPLES=off -DJANSSON_BUILD_DOCS=off
     - cmake --build . --config Release
     - cmake --build . --config Release --target install
 
@@ -47,3 +63,7 @@ install:
     - set "LIBDESTPATH=%ABSPATH%/lib/"
     - set "INCLUDEDESTPATH=%ABSPATH%/include/"
 
+cache:
+    - C:\projects\tools\ninja
+    - C:\projects\tools\cmake
+    - C:\projects\tools\llvm-installer.exe
