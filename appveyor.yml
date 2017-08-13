@@ -49,11 +49,11 @@ build_script:
     - cmake --build . --config Release
     - cmake --build . --config Release --target install
 
-    - cd ../../portaudio
-    - mkdir cmake_build
-    - cd cmake_build
-    - cmake -G "Visual Studio 14 2015 Win64" ..
+    - mkdir "%BUILDPATH%/portaudio"
+    - cd "%BUILDPATH%/portaudio"
+    - cmake -G "%GENERATOR%" -DCMAKE_C_COMPILER=%COMPILER% -DCMAKE_CXX_COMPILER=%COMPILER% -DCMAKE_BUILD_TYPE=Release "%SRCPATH%/portaudio" -DCMAKE_INSTALL_PREFIX="%SYSROOTPATH%/usr"
     - cmake --build . --config Release
+    - cmake --build . --config Release --target install
 
     - set "LIBDESTPATH=%ABSPATH%/lib/"
     - set "INCLUDEDESTPATH=%ABSPATH%/include/"
