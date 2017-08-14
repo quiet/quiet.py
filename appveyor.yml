@@ -11,7 +11,7 @@ environment:
           COMPILER: cl.exe
           MSVC_BAT: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
           MSVC_BAT_ARCH: x86
-          PLATFORM: x86
+          platform: x86
           GENERATOR: "Visual Studio 14 2015 Win64"
           APPVEYOR_SAVE_CACHE_ON_ERROR: true
 
