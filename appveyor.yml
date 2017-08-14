@@ -11,7 +11,7 @@ environment:
           COMPILER: cl.exe
           MSVC_BAT: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
           MSVC_BAT_ARCH: x86
-          GENERATOR: "Visual Studio 14 2015"
+          GENERATOR: "Visual Studio 14 2015 Win64"
           APPVEYOR_SAVE_CACHE_ON_ERROR: true
 
 before_build:
@@ -54,6 +54,10 @@ build_script:
     - cmake -G "%GENERATOR%" -DCMAKE_C_COMPILER=%COMPILER% -DCMAKE_CXX_COMPILER=%COMPILER% -DCMAKE_BUILD_TYPE=Release "%SRCPATH%/portaudio" -DCMAKE_INSTALL_PREFIX="%SYSROOTPATH%/usr"
     - cmake --build . --config Release
     - cp "%SRCPATH%/portaudio/include/portaudio.h" "%SYSROOTPATH%/usr/include/portaudio.h"
+    - cp "%BUILDPATH%/portaudio/Release/portaudio_static_*.lib" "%SYSROOTPATH/usr/lib/"
+    - cp "%BUILDPATH%/portaudio/Release/portaudio_*.dll" "%SYSROOTPATH/usr/lib"
+
+    - cd "%SYSROOTPATH/usr"
     - dir /s
 
     - set "LIBDESTPATH=%ABSPATH%/lib/"
