@@ -54,10 +54,10 @@ build_script:
     - cmake -G "%GENERATOR%" -DCMAKE_C_COMPILER=%COMPILER% -DCMAKE_CXX_COMPILER=%COMPILER% -DCMAKE_BUILD_TYPE=Release "%SRCPATH%/portaudio" -DCMAKE_INSTALL_PREFIX="%SYSROOTPATH%/usr"
     - cmake --build . --config Release
     - cp "%SRCPATH%/portaudio/include/portaudio.h" "%SYSROOTPATH%/usr/include/portaudio.h"
-    - cp "%BUILDPATH%/portaudio/Release/portaudio_static_*.lib" "%SYSROOTPATH/usr/lib/"
-    - cp "%BUILDPATH%/portaudio/Release/portaudio_*.dll" "%SYSROOTPATH/usr/lib"
+    - cp "%BUILDPATH%/portaudio/Release/portaudio_static_x64.lib" "%SYSROOTPATH%/usr/lib/"
+    - cp "%BUILDPATH%/portaudio/Release/portaudio_x64.dll" "%SYSROOTPATH%/usr/lib"
 
-    - cd "%SYSROOTPATH/usr"
+    - cd "%SYSROOTPATH%/usr"
     - dir /s
 
     - set "LIBDESTPATH=%ABSPATH%/lib/"
