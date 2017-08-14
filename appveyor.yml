@@ -11,6 +11,7 @@ environment:
           COMPILER: cl.exe
           MSVC_BAT: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
           MSVC_BAT_ARCH: x86
+          PLATFORM: x86
           GENERATOR: "Visual Studio 14 2015 Win64"
           APPVEYOR_SAVE_CACHE_ON_ERROR: true
 
@@ -53,12 +54,8 @@ build_script:
     - cd "%BUILDPATH%/portaudio"
     - cmake -G "%GENERATOR%" -DCMAKE_C_COMPILER=%COMPILER% -DCMAKE_CXX_COMPILER=%COMPILER% -DCMAKE_BUILD_TYPE=Release "%SRCPATH%/portaudio" -DCMAKE_INSTALL_PREFIX="%SYSROOTPATH%/usr"
     - cmake --build . --config Release
+    - cp "%SRCPATH%/portaudio/include/portaudio.h" "%SYSROOTPATH/usr/include/portaudio.h"
     - dir /s
 
     - set "LIBDESTPATH=%ABSPATH%/lib/"
     - set "INCLUDEDESTPATH=%ABSPATH%/include/"
-
-cache:
-    - C:\projects\tools\ninja
-    - C:\projects\tools\cmake
-    - C:\projects\tools\llvm-installer.exe
