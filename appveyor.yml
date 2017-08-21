@@ -64,6 +64,7 @@ build_script:
     - cd "%BUILDPATH%/libquiet"
     - cmake -G "%GENERATOR%" -DCMAKE_C_COMPILER=%COMPILER% -DCMAKE_CXX_COMPILER=%COMPILER% -DCMAKE_BUILD_TYPE=Release "%SRCPATH%/libquiet" -DCMAKE_INSTALL_PREFIX="%SYSROOTPATH%/usr" -DQUIET_CXX=on
     - cmake --build . --config Release
+    - cmake --build . --config Release --target check
 
     - set "LIBDESTPATH=%ABSPATH%/lib/"
     - set "INCLUDEDESTPATH=%ABSPATH%/include/"
