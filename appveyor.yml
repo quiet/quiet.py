@@ -51,7 +51,7 @@ build_script:
 
     - mkdir "%BUILDPATH%/portaudio"
     - cd "%BUILDPATH%/portaudio"
-    - cmake -G "%GENERATOR%" -DCMAKE_C_COMPILER=%COMPILER% -DCMAKE_CXX_COMPILER=%COMPILER% -DCMAKE_BUILD_TYPE=Release "%SRCPATH%/portaudio" -DCMAKE_INSTALL_PREFIX="%SYSROOTPATH%/usr"
+    - cmake -G "%GENERATOR%" -DCMAKE_C_COMPILER=%COMPILER% -DCMAKE_CXX_COMPILER=%COMPILER% -DCMAKE_BUILD_TYPE=Release "%SRCPATH%/portaudio" -DCMAKE_INSTALL_PREFIX="%SYSROOTPATH%/usr" -DPA_DLL_LINK_WITH_STATIC_RUNTIME=off
     - cmake --build . --config Release
     - cp "%SRCPATH%/portaudio/include/portaudio.h" "%SYSROOTPATH%/usr/include/portaudio.h"
     - cp "%BUILDPATH%/portaudio/Release/portaudio_static_x64.lib" "%SYSROOTPATH%/usr/lib/portaudio.lib"
