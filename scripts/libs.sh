@@ -35,7 +35,7 @@ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$SYSROOT/usr" -DCMAKE_P
 
 mkdir -p "$BUILDPATH/libquiet"
 cd "$BUILDPATH/libquiet"
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$SYSROOT/usr" -DCMAKE_PREFIX_PATH="$SYSROOT" "$SRCPATH/libquiet" && make && make install
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$SYSROOT/usr" -DCMAKE_PREFIX_PATH="$SYSROOT" "$SRCPATH/libquiet" && make && make check && make install
 
 mkdir -p "$LIBPATH"
 mkdir -p "$INCLUDEPATH"
