@@ -7,6 +7,7 @@ SRCPATH="$ABSPATH"
 SYSROOTPATH="$ABSPATH/sysroot"
 LIBPATH="$ABSPATH/lib/"
 INCLUDEPATH="$ABSPATH/include/"
+export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$LIBPATH"
 
 if [ ! -d "$SYSROOTPATH/usr" ]; then
     mkdir -p "$SYSROOTPATH/usr"
