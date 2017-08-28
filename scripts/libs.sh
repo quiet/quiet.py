@@ -19,7 +19,7 @@ mkdir -p "$BUILDPATH"
 mkdir -p "$BUILDPATH/libcorrect"
 cd "$BUILDPATH/libcorrect"
 cmake -DCMAKE_BUILD_TYPE=Release "$SRCPATH/libcorrect" -DCMAKE_INSTALL_PREFIX="$SYSROOT/usr" && make && make shim && make install
-rm -f "$LIBPATH/libfec.dylib"
+rm -f "$SYSROOT/usr/lib/libfec.dylib"
 
 mkdir -p "$BUILDPATH/liquid-dsp"
 cd "$BUILDPATH/liquid-dsp"
